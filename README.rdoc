@@ -78,5 +78,5 @@ an array of classes which can act as a referrer
 
 == Copyright
 
-Copyright (c) 2010 Matt Van Horn, based on work by "Sergio Cambra"[http://github.com/scambra/devise_invitable]. 
+Copyright (c) 2010 Matt Van Horn, based on work by {Sergio Cambra}[http://github.com/scambra/devise_invitable]. 
 See LICENSE for details.
