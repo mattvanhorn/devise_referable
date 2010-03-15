@@ -28,7 +28,6 @@ ActiveRecord::Schema.define(:version => 1) do
     t.integer   :recipient_id
     t.string    :referral_token
     t.datetime  :registered_at
-    t.datetime  :scooped_at
     t.timestamps
   end
 end
