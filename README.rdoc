@@ -1,0 +1,82 @@
+= devise_referable
+
+It adds support to devise[http://github.com/plataformatec/devise] for tracking 
+users that were sent by referrers modeled as other classes in your app.
+
+== Installation
+
+All gems are on gemcutter, so you need to add gemcutter to your sources if you haven’t yet:
+
+  sudo gem sources -a http://gemcutter.org/
+
+Install devise_referable gem, it should install dependencies (such as devise and warden):
+
+  sudo gem install devise_referable
+
+Configure devise_referable inside your app (and warden and devise if you weren't using them):
+
+  config.gem 'warden'
+  config.gem 'devise'
+  config.gem 'devise_referable'
+
+== Basic Usage
+
+Follow the walkthrough for devise with the following modifications.
+
+Create a migration for the referrals table:
+
+    create_table :referrals, :force => true do |t|
+      t.integer   :referrer_id
+      t.string    :referrer_type
+      t.integer   :recipient_id
+      t.string    :referral_token
+      t.datetime  :registered_at
+      t.datetime  :scooped_at
+      t.timestamps
+    end
+
+Add a referrer_token column to your referrer classes.
+
+    add_column :table_name1, :referrer_token, :string
+    add_column :table_name2, :referrer_token, :string
+    
+Add indexes if you want
+    add_index  :referrals,  :referral_token 
+    add_index  :table_name1, :referrer_token
+    add_index  :table_name2, :referrer_token
+
+
+Add :referable to the devise line in your model:
+
+  class User < ActiveRecord::Base
+    devise ..., :referable
+  end
+
+If you are using devise :all, you can add :referable to config.all in devise initializer:
+  Devise.setup do |config|
+    ...
+    config.all = [..., :referable]
+    ...
+  end
+
+== Model configuration
+
+DeviseReferable adds a new configuration option, :referral_types. It should be 
+an array of classes which can act as a referrer
+
+
+== Note on Patches/Pull Requests
+ 
+* Fork the project.
+* Make your feature addition or bug fix.
+* Add tests for it. This is important so I don't break it in a
+  future version unintentionally.
+* Commit, do not mess with rakefile, version, or history.
+  (if you want to have your own version, that is fine but
+  bump version in a commit by itself I can ignore when I pull)
+* Send me a pull request. Bonus points for topic branches.
+
+== Copyright
+
+Copyright (c) 2010 Matt Van Horn, based on work by Sergio Cambra. 
+See LICENSE for details.
