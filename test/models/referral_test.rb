@@ -19,6 +19,7 @@ class ReferableTest < ActiveSupport::TestCase
   test 'should create referral from token' do
     Blog.expects(:find_by_referrer_token).with('abc123').returns(create_user) # I just need an AR obj here to avoid massive stubbing. 
                                                                               # Should be a blog not a user.
+                                                                                                                                                            
     result = Referral.from_token('abc123')
     assert result.is_a?( Referral)
     assert_not_nil result.referral_token

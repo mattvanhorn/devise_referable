@@ -23,7 +23,7 @@ Configure devise_referable inside your app (and warden and devise if you weren't
 
 Follow the walkthrough for devise with the following modifications.
 
-Create a migration for the referrals table:
+Create a migration for the referrals table, minimally:
 
     create_table :referrals, :force => true do |t|
       t.integer   :referrer_id
@@ -32,6 +32,12 @@ Create a migration for the referrals table:
       t.string    :referral_token
       t.datetime  :registered_at
       t.timestamps
+    end
+
+And create a Referral class, minimally:
+
+    class Referral < ActiveRecord::Base
+        acts_as_referral
     end
 
 Add a referrer_token column to your referrer classes.

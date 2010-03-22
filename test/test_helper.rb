@@ -44,7 +44,7 @@ ActionController::Routing::Routes.draw do |map|
 end
 
 require File.join(File.dirname(__FILE__), '..', 'app', 'controllers', 'referrals_controller')
-require File.join(File.dirname(__FILE__), '..', 'app', 'models', 'referral')
+# require File.join(File.dirname(__FILE__), '..', 'app', 'models', 'referral')
 
 Webrat.configure do |config|
   config.mode = :rails

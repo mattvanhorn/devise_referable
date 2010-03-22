@@ -7,6 +7,5 @@ Devise.add_module :referable, :controller => :referrals, :model => 'devise_refer
 
 module DeviseReferable; end
 
-require File.join(File.dirname(__FILE__), '..', 'app', 'models', 'referral')
-
 require 'devise_referable/routes'
+require 'devise_referable/referral'
