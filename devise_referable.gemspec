@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{devise_referable}
-  s.version = "0.2.0"
+  s.version = "0.3.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Matt Van Horn, based on work by Sergio Cambra"]
-  s.date = %q{2010-03-22}
+  s.date = %q{2010-03-25}
   s.description = %q{It tracks the referring entity via cookie, and creates a record when user registers.}
   s.email = %q{mattvanhorn@gmail.com}
   s.extra_rdoc_files = [
@@ -19,6 +19,7 @@ Gem::Specification.new do |s|
   s.files = [
     ".document",
      ".gitignore",
+     "CHANGES",
      "LICENSE",
      "README.rdoc",
      "Rakefile",
@@ -29,6 +30,7 @@ Gem::Specification.new do |s|
      "lib/devise/hooks/referable.rb",
      "lib/devise_referable.rb",
      "lib/devise_referable/model.rb",
+     "lib/devise_referable/referral.rb",
      "lib/devise_referable/routes.rb",
      "rails/init.rb",
      "test/integration/referable_test.rb",
@@ -42,6 +44,7 @@ Gem::Specification.new do |s|
      "test/rails_app/app/controllers/users_controller.rb",
      "test/rails_app/app/helpers/application_helper.rb",
      "test/rails_app/app/models/blog.rb",
+     "test/rails_app/app/models/referral.rb",
      "test/rails_app/app/models/user.rb",
      "test/rails_app/app/views/home/index.html.erb",
      "test/rails_app/config/boot.rb",
