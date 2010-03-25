@@ -24,8 +24,9 @@ class ActiveRecordTest < ActiveSupport::TestCase
     assert_include_modules Referable, :authenticatable, :referable
   end
 
-  test 'set a default value for invite_for' do
+  test 'set a value for referrer_types' do
     assert_equal [:foo, :bar], Referable.referrer_types
   end
+  
 
 end

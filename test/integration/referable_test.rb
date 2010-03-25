@@ -12,7 +12,7 @@ class ReferralTest < ActionController::IntegrationTest
     visit referral_landing_path(:referrer_token => 'abc123')
     assert :success
     assert_equal 1, Referral.count
-    assert_not_nil session[:referral_token]
+    assert_not_nil cookies['referral_token']
     
     visit new_user_registration_path
     assert :success
@@ -22,8 +22,7 @@ class ReferralTest < ActionController::IntegrationTest
     fill_in 'password confirmation', :with => 'new_user123'
     click_button 'Sign up'
     
-    user = User.last :order => "id"
-
+    user = User.last :order => "id ASC"
     assert user.referral.referrer == @blog
   end
 
@@ -53,7 +52,7 @@ class ReferralTest < ActionController::IntegrationTest
     assert :success
     
     assert_equal 0, Referral.count
-    assert_nil session[:referral_token]
+    assert_nil cookies['referral_token']
   end
   
 end
