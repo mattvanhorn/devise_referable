@@ -69,6 +69,9 @@ If you are using devise :all, you can add :referable to config.all in devise ini
 DeviseReferable adds a new configuration option, :referral_types. It should be 
 an array of classes which can act as a referrer
 
+== Routes
+
+  rails g devise_referable login
 
 == Note on Patches/Pull Requests
  
