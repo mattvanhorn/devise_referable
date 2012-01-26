@@ -3,7 +3,9 @@ Devise.module_eval do
   mattr_accessor :referrer_types
   @@referrer_types = []
 end
-Devise.add_module :referable, :controller => :referrals, :model => 'devise_referable/model'
+
+Devise.add_module :referable, :controller => :referrals, :model=>'devise/models/referable'
+
 
 module DeviseReferable;end
 

@@ -27,6 +27,7 @@ Gem::Specification.new do |s|
      "app/controllers/referrals_controller.rb",
      "devise_referable.gemspec",
      "init.rb",
+     "lib/generators/devise_referable_route/devise_referable_route_generator.rb",
      "lib/devise/hooks/referable.rb",
      "lib/devise_referable.rb",
      "lib/devise_referable/model.rb",

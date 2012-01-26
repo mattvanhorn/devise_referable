@@ -8,6 +8,6 @@ Warden::Manager.after_set_user :except => :fetch do |record, warden, options|
   scope = options[:scope]
   if record.respond_to?(:referral) && record.referral.nil? && warden.authenticated?(scope) && token
     record.update_referral(token) if record.respond_to?(:update_referral)
-    warden.response.delete_cookie 'referral_token'
+    warden.cookies.delete("referral_token")
   end
 end
