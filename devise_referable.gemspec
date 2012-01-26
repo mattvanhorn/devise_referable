@@ -114,7 +114,7 @@ Gem::Specification.new do |s|
   else
     s.add_dependency(%q<mocha>, [">= 0"])
     s.add_dependency(%q<webrat>, [">= 0"])
-    s.add_dependency(%q<devise>, ["~> 1.0.0"])
+    s.add_dependency(%q<devise>, ["> 1.0.0"])
   end
 end
 
