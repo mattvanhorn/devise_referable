@@ -9,4 +9,4 @@ module DeviseReferable
   end
 end
 
-ActionController::Routing::RouteSet::Mapper.send :include, DeviseReferable::Routes
+#ActionController::Routing::RouteSet::Mapper.send :include, DeviseReferable::Routes
