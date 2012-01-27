@@ -4,7 +4,7 @@
 # in other circumstances where a user was existing in a legacy db for example.
 
 Warden::Manager.after_set_user :except => :fetch do |record, warden, options|
-  token = warden.env['rack.request.cookie_hash']['referral_token']
+  token = warden.env['rack.request.cookie_hash'].try(:[],'referral_token')
   scope = options[:scope]
   if record.respond_to?(:invitation) && record.invitation.nil? && warden.authenticated?(scope) && token
     record.update_referral(token) if record.respond_to?(:update_referral)
