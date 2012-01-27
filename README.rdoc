@@ -69,11 +69,6 @@ If you are using devise :all, you can add :referable to config.all in devise ini
 DeviseReferable adds a new configuration option, :referral_types. It should be 
 an array of classes which can act as a referrer
 
-Model has the following methods
-
-  invitation - who invited me
-  referrals - whom I invited to come to the site
-
 == Routes
 
   rails g devise_referable login

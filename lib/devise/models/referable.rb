@@ -24,7 +24,8 @@ module Devise
       extend ActiveSupport::Concern
 
       included do
-        after_create :generate_referrer_token
+        include Rails.application.routes.url_helpers
+        before_create :generate_referrer_token
 
         has_one :invitation, :foreign_key => :recipient_id, :class_name => "Referral"
         has_many :referrals, :foreign_key => :referrer_id
@@ -43,6 +44,22 @@ module Devise
           referral.update_attributes(:recipient_id => self.id,
                                      :registered_at => self.created_at)
         end
+      end
+
+      def referral_path(path=nil)
+
+        unless self.referrer_token
+          self.generate_referrer_token
+          self.save!
+        end
+
+        unless path
+          path = root_path
+        end
+        if path == "/"
+          path = nil
+        end
+        referral_landing_path(:referrer_token=>self.referrer_token, :path=>path)
       end
 
       protected
