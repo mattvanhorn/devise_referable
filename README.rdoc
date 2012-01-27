@@ -1,7 +1,8 @@
 = devise_referable
 
 It adds support to devise[http://github.com/plataformatec/devise] for tracking 
-users that were sent by referrers modeled as other classes in your app.
+users that were sent by referrers modeled as other classes in your app and allows
+multiple people to be reffered by the same person
 
 == Installation
 
