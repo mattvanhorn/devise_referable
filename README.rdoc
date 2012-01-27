@@ -69,10 +69,10 @@ If you are using devise :all, you can add :referable to config.all in devise ini
 DeviseReferable adds a new configuration option, :referral_types. It should be 
 an array of classes which can act as a referrer
 
-  has_one :invitation, :foreign_key => :recipient_id, :class_name => "Referral"
-  has_many :referrals, :foreign_key => :referrer_id
+Model has the following methods
 
-  after_create :reset_referrer_token!
+  invitation - who invited me
+  referrals - whom I invited to come to the site
 
 == Routes
 

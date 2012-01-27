@@ -19,12 +19,20 @@ module Devise
     # Configuration:
     # 
     #   referrer_types: an array of symbols for classes that can refer users. i.e. [:blog, :customer, :user]
-    
+
     module Referable
+      extend ActiveSupport::Concern
+
+      included do
+        after_create :generate_referrer_token
+
+        has_one :invitation, :foreign_key => :recipient_id, :class_name => "Referral"
+        has_many :referrals, :foreign_key => :referrer_id
+      end
+
 
       def self.included(base)
         base.class_eval do
-          has_one :referral, :foreign_key => :recipient_id
           extend ClassMethods
         end
       end
@@ -32,12 +40,16 @@ module Devise
       def update_referral(token)
         referral = Referral.find_by_referral_token(token)
         if referral
-          referral.update_attributes( :recipient_id => self.id, 
-                                      :registered_at => self.created_at )
+          referral.update_attributes(:recipient_id => self.id,
+                                     :registered_at => self.created_at)
         end
       end
-      
+
       protected
+
+      def generate_referrer_token
+        self.referrer_token = Devise.friendly_token unless self.referrer_token
+      end
 
       module ClassMethods
         Devise::Models.config(self, :referrer_types)
