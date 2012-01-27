@@ -72,6 +72,8 @@ an array of classes which can act as a referrer
   has_one :invitation, :foreign_key => :recipient_id, :class_name => "Referral"
   has_many :referrals, :foreign_key => :referrer_id
 
+  after_create :reset_referrer_token!
+
 == Routes
 
   rails g devise_referable login
