@@ -2,7 +2,9 @@
 
 It adds support to devise[http://github.com/plataformatec/devise] for tracking 
 users that were sent by referrers modeled as other classes in your app and allows
-multiple people to be reffered by the same person
+multiple people to be reffered by the same person. In addition, accepting an invitation 
+recorded in a cooky so it is not necesary to create a separate acceptance page. You can
+provide any page to be acceptance page
 
 == Installation
 
