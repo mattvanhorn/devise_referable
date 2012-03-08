@@ -5,7 +5,7 @@ class ReferralsController < ApplicationController
   def create
 
     unless login_signed_in?
-      @referral = Referral.from_token(params[:referrer_token])
+      @referral = Referral.from_token(params[:referrer_token], :session_id=>session[:session_id])
       cookies['referral_token'] = {:value => @referral.referral_token, :expires => 1.month.from_now} if @referral
     end
     redirect_to "#{params[:path]}"
