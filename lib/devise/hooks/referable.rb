@@ -1,4 +1,5 @@
-# After a user is set, we check to make sure that if they were referred, the 
+require 'warden'
+# After a user is set, we check to make sure that if they were referred, the
 # referral is updated with the user's id. 
 # This will generally happen on registration, but could possibly happen on login
 # in other circumstances where a user was existing in a legacy db for example.
