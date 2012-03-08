@@ -37,7 +37,8 @@ module Devise
                 sender = lookup_referrer(token)
                 if sender
 
-                  if options[:session_id] and ref=Referral.find_by_session_id_and_referrer_id(options[:session_id], sender.id)
+                  #if there is already a referral for the given anonymous user
+                  if options[:session_id] and ref=self.find_by_session_id_and_referrer_id(options[:session_id], sender.id)
                     ref
                   else
                     self.create do |ref|
