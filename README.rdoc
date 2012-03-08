@@ -34,6 +34,7 @@ Create a migration for the referrals table, minimally:
       t.integer   :recipient_id
       t.string    :referral_token
       t.datetime  :registered_at
+      t.string    :session_id
       t.timestamps
     end
 
