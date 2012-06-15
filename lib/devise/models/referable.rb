@@ -40,7 +40,7 @@ module Devise
 
       def update_referral(token)
         referral = Referral.find_by_referral_token(token)
-        if referral
+        if referral && self != referral.referrer
           referral.update_attributes(:recipient_id => self.id,
                                      :registered_at => self.created_at)
         end
