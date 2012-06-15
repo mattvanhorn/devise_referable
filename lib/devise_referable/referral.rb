@@ -7,13 +7,13 @@ module Devise
       def self.included(base)
         base.extend(ClassMethods)
       end
-      
+
       module InstanceMethods
         def generate_token
           self.referral_token ||= Devise.friendly_token
         end
       end
-      
+
       module ClassMethods
         def acts_as_referral(options = {})
           class_eval <<-EOV
@@ -33,14 +33,23 @@ module Devise
               return nil
             end
 
-            def self.from_token(token)
-              sender = lookup_referrer(token)
-              if sender
-                self.create do |ref|
-                  ref.referrer = sender
+            def self.from_token(token, options={})
+                sender = lookup_referrer(token)
+                if sender
+
+                  #if there is already a referral for the given anonymous user
+                  if options[:session_id] and ref=self.find_by_session_id_and_referrer_id(options[:session_id], sender.id)
+                    ref
+                  else
+                    self.create do |ref|
+                      ref.referrer = sender
+                      ref.session_id=options[:session_id]
+                    end
+                  end
+
                 end
-              end
             end
+
 
             belongs_to :referrer, :polymorphic => true
             belongs_to :recipient, :class_name => 'User'
